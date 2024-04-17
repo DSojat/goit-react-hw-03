@@ -1,6 +1,7 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 
 import ContactList from './ContactList/ContactList';
+import SearchBox from './SearchBox/SearchBox';
 
 const contactsArray = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -10,12 +11,13 @@ const contactsArray = [
 ];
 
 function App() {
+  const [contactsValue, setContactsValue] = useState(contactsArray);
   return (
     <div>
       <h1>Phonebook</h1>
-      {/* <ContactForm />
-      <SearchBox /> */}
-      <ContactList contacts={contactsArray} />
+      {/* <ContactForm /> */}
+      <SearchBox />
+      <ContactList contacts={contactsValue} />
     </div>
   );
 }

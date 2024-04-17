@@ -1,9 +1,18 @@
-const Contact = ({ contacts }) => {
+import css from './Contact.module.css';
+
+const Contact = ({ contactItem }) => {
+  const { name, number } = contactItem;
   return (
     <>
-      {contacts.map(item => {
-        <li>{item.number}</li>;
-      })}
+      <li className={css.contactBox}>
+        <div>
+          <p>&#128100; {name}</p>
+          <p>&#128222; {number}</p>
+        </div>
+        <button className={css.button} type="button">
+          Delete
+        </button>
+      </li>
     </>
   );
 };
