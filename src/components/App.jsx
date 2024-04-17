@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ContactList from './ContactList/ContactList';
 import SearchBox from './SearchBox/SearchBox';
+import ContactForm from './ContactForm/ContactForm';
 
 const contactsArray = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -12,11 +13,24 @@ const contactsArray = [
 
 function App() {
   const [contactsValue, setContactsValue] = useState(contactsArray);
+
+  const [inputValue, setInputValue] = useState('');
+  const handleChange = evt => {
+    setInputValue(evt.target.value);
+  };
+  useEffect(() => {
+    const pattern = inputValue.toLowerCase().trim();
+    const filteredValue = contactsArray.filter(({ name }) =>
+      name.toLowerCase().includes(pattern)
+    );
+    setContactsValue(filteredValue);
+  }, [inputValue]);
+
   return (
     <div>
       <h1>Phonebook</h1>
-      {/* <ContactForm /> */}
-      <SearchBox />
+      <ContactForm />
+      <SearchBox inputValue={inputValue} handleChange={handleChange} />
       <ContactList contacts={contactsValue} />
     </div>
   );
