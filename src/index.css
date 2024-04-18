@@ -26,6 +26,25 @@
   margin-bottom: 32px;
 }
 
+button {
+  font-family: inherit;
+  font-size: inherit;
+  align-self: center;
+  padding: 0 12px;
+  min-width: 80px;
+  height: 32px;
+  border: 1px solid rgb(139, 134, 134);
+  border-radius: 4px;
+}
+
+button:hover {
+  box-shadow: 1px 1px #2b2929;
+}
+
+button:active {
+  color: red;
+}
+
 body {
   font-family: sans-serif;
   line-height: 1.5;

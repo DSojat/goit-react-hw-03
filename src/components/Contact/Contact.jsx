@@ -9,9 +9,7 @@ const Contact = ({ contactItem }) => {
           <p>&#128100; {name}</p>
           <p>&#128222; {number}</p>
         </div>
-        <button className={css.button} type="button">
-          Delete
-        </button>
+        <button type="button">Delete</button>
       </li>
     </>
   );
