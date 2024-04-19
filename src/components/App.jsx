@@ -38,13 +38,10 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    const pattern = inputValue.toLowerCase().trim();
-    const filteredValue = contactsValue.filter(({ name }) =>
-      name.toLowerCase().includes(pattern)
-    );
-    setContactsValue(filteredValue);
-  }, [inputValue]);
+  const pattern = inputValue.toLowerCase().trim();
+  const filteredValue = contactsValue.filter(({ name }) =>
+    name.toLowerCase().includes(pattern)
+  );
 
   useEffect(() => {
     window.localStorage.setItem(
@@ -57,8 +54,8 @@ function App() {
     <div>
       <h1>Phonebook</h1>
       <ContactForm onAdd={addContact} />
-      <SearchBox inputValue={inputValue} handleChange={handleChange} />
-      <ContactList contacts={contactsValue} onDelete={deleteContact} />
+      <SearchBox value={inputValue} onChange={handleChange} />
+      <ContactList contacts={filteredValue} onDelete={deleteContact} />
     </div>
   );
 }

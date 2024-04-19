@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import css from './SearchBox.module.css';
 
-const SearchBox = ({ inputValue, handleChange }) => {
+const SearchBox = ({ value, onChange }) => {
   const searchId = useId();
   return (
     <div className={css.searchBox}>
@@ -9,8 +9,8 @@ const SearchBox = ({ inputValue, handleChange }) => {
       <input
         className={css.searchField}
         type="text"
-        value={inputValue}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         id={searchId}
       />
     </div>
