@@ -12,7 +12,14 @@ const contactsArray = [
 ];
 
 function App() {
-  const [contactsValue, setContactsValue] = useState(contactsArray);
+  const [contactsValue, setContactsValue] = useState(() => {
+    const savedContacts = window.localStorage.getItem('saved-contacts');
+    if (savedContacts !== null) {
+      return JSON.parse(savedContacts);
+    } else {
+      return contactsArray;
+    }
+  });
 
   const [inputValue, setInputValue] = useState('');
   const handleChange = evt => {
@@ -33,11 +40,18 @@ function App() {
 
   useEffect(() => {
     const pattern = inputValue.toLowerCase().trim();
-    const filteredValue = contactsArray.filter(({ name }) =>
+    const filteredValue = contactsValue.filter(({ name }) =>
       name.toLowerCase().includes(pattern)
     );
     setContactsValue(filteredValue);
   }, [inputValue]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      'saved-contacts',
+      JSON.stringify(contactsValue)
+    );
+  }, [contactsValue]);
 
   return (
     <div>
