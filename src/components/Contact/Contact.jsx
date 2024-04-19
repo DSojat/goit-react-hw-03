@@ -1,16 +1,13 @@
-import css from './Contact.module.css';
-
-const Contact = ({ contactItem }) => {
-  const { name, number } = contactItem;
+const Contact = ({ contactItem: { id, name, number }, onDelete }) => {
   return (
     <>
-      <li className={css.contactBox}>
-        <div>
-          <p>&#128100; {name}</p>
-          <p>&#128222; {number}</p>
-        </div>
-        <button type="button">Delete</button>
-      </li>
+      <div>
+        <p>&#128100; {name}</p>
+        <p>&#128222; {number}</p>
+      </div>
+      <button type="button" onClick={() => onDelete(id)}>
+        Delete
+      </button>
     </>
   );
 };

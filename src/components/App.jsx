@@ -18,6 +18,19 @@ function App() {
   const handleChange = evt => {
     setInputValue(evt.target.value);
   };
+
+  const addContact = newContact => {
+    setContactsValue(contactsValue => {
+      return [...contactsValue, newContact];
+    });
+  };
+
+  const deleteContact = contactId => {
+    setContactsValue(contactsValue => {
+      return contactsValue.filter(contact => contact.id != contactId);
+    });
+  };
+
   useEffect(() => {
     const pattern = inputValue.toLowerCase().trim();
     const filteredValue = contactsArray.filter(({ name }) =>
@@ -29,9 +42,9 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onAdd={addContact} />
       <SearchBox inputValue={inputValue} handleChange={handleChange} />
-      <ContactList contacts={contactsValue} />
+      <ContactList contacts={contactsValue} onDelete={deleteContact} />
     </div>
   );
 }

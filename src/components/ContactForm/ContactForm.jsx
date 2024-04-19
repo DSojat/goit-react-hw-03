@@ -19,12 +19,16 @@ const initialValues = {
   usernumber: '',
 };
 
-const ContactForm = () => {
+const ContactForm = ({ onAdd }) => {
   const nameId = nanoid();
   const numberId = nanoid();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    onAdd({
+      id: nanoid(),
+      name: values.username,
+      number: values.usernumber,
+    });
     actions.resetForm();
   };
 
